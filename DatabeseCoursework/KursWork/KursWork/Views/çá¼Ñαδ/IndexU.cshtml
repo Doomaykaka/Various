@@ -1,0 +1,102 @@
+﻿@model IEnumerable<KursWork.Models.Замеры>
+
+@{
+    ViewBag.Title = "Замеры";
+}
+
+<h2>Замеры</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Проверка записей на пригодность замера :
+    </p>
+    <p>
+        Норма температуры от @Html.TextBox("Tmin") до @Html.TextBox("Tmax")
+    </p>
+    <p>
+        Норма давления от @Html.TextBox("Pmin") до @Html.TextBox("Pmax")
+    </p>
+    <p>
+        Норма влажности от @Html.TextBox("Wmin") до @Html.TextBox("Wmax")
+    </p>
+    <p>
+        Критическое число "Великолепных" замеров для начала проверки @Html.TextBox("Lie")
+    </p>
+    <p>
+        <input type="submit" value="Применить" />
+    </p>
+}
+@ViewBag.activityCount*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_замера)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Средняя_температура_на_участке)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Давление)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Влажность_участка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Освещенность_участка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Пригодность_параметров)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_проведения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер_замера)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Средняя_температура_на_участке)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Давление)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Влажность_участка)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Освещенность_участка)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Пригодность_параметров)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_проведения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Участок.Тип_участка)
+            </td>
+            @*<td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_замера }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.Номер_замера }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_замера })
+            </td>*@
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

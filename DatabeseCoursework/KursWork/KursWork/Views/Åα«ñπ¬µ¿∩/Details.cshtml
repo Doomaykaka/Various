@@ -1,0 +1,98 @@
+﻿@model KursWork.Models.Продукция
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+    <h4>Продукция</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Название_продукта)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название_продукта)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Объем_продукции)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Объем_продукции)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_сбора)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_сбора)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Срок_годности)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Срок_годности)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_производства)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_производства)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_животноводческая_растительная_)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_животноводческая_растительная_)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сорт_продукции)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сорт_продукции)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Стоимость)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Стоимость)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Заказы.Отзыв)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Заказы.Отзыв)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок.Тип_участка)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Название_продукта }) |
+    @Html.ActionLink("К списку", "Index")
+</p>

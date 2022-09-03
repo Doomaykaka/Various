@@ -1,0 +1,81 @@
+﻿@model IEnumerable<KursWork.Models.Участок>
+
+@{
+    ViewBag.Title = "Участок";
+}
+
+<h2>Участок</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Фильтрация по площади участка : от @Html.TextBox("SquareS") до @Html.TextBox("SquareF")
+    </p>
+    <p>
+        Поиск по номеру участка : @Html.TextBox("SquareNum")
+    </p>
+    <p>
+        <input type="submit" value="Применить" />
+    </p>
+}*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_участка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Площадь)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Эффективность)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_участка)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Загоны.Тип_животных)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Поля_и_теплицы.Тип_почвы)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер_участка)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Площадь)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Эффективность)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Тип_участка)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Загоны.Тип_животных)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Поля_и_теплицы.Тип_почвы)*@
+            </td>
+            @*<td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_участка }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.Номер_участка }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_участка })
+            </td>*@
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00bd5aab71684392a6aa1599a2ff6ac6" Name="Diagram1" ZoomLevel="121">
+        <EntityTypeShape EntityType="kursachV2Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Загоны" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Заказы" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Замеры" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Инвентарь" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Обработка" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Обслуживающий_персонал" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Поля_и_теплицы" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Продукция" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="kursachV2Model.Участок" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="kursachV2Model.FK_Загоны_Участок" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.Продукция_Заказы_FK_Rule" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.Замеры_Участок_FK_Rule" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.FK_Инвентарь_Инвентарь" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.Обработка_Участок_FK_Rule" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.Обслуживающий_персонал_Обработка_FK_Rule" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.FK_Поля_и_теплицы_Участок" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.Продукция_Участок_FK_Rule" ManuallyRouted="false" />
+        <AssociationConnector Association="kursachV2Model.Персонал_инвентарь" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="kursachV2Model.UserModels" Width="1.5" PointX="6.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

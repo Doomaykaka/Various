@@ -1,0 +1,85 @@
+﻿@model IEnumerable<KursWork.Models.Инвентарь>
+
+@{
+    ViewBag.Title = "Инвентарь";
+}
+
+<h2>Инвентарь</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_инвентаря)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Состояние)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Назначение)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Число_владельцев)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Стоимость)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Принцип_работы)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_комплектного_инвентаря)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Инвентарь2.Наименование)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Номер_инвентаря)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Наименование)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Состояние)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Назначение)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Число_владельцев)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Стоимость)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Принцип_работы)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Номер_комплектного_инвентаря)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Инвентарь2.Наименование)
+        </td>*@
+    @*<td>
+        @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_инвентаря }) |
+        @Html.ActionLink("Подробнее", "Details", new { id = item.Номер_инвентаря }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_инвентаря })
+    </td>*@
+</tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

@@ -1,0 +1,56 @@
+﻿@model KursWork.Models.Обработка
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы хотите удалить эту запись?</h3>
+<div>
+    <h4>Обработка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Время_обработки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Время_обработки)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Статус_выполнения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_выполнения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Описание_процесса_обработки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Описание_процесса_обработки)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок.Тип_участка)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку", "Index")
+        </div>
+    }
+</div>

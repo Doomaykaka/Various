@@ -1,0 +1,82 @@
+﻿@model KursWork.Models.Замеры
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+    <h4>Замеры</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Средняя_температура_на_участке)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Средняя_температура_на_участке)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Давление)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Давление)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Влажность_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Влажность_участка)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Освещенность_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Освещенность_участка)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Пригодность_параметров)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Пригодность_параметров)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_проведения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_проведения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_замера)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_замера)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок.Тип_участка)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Номер_замера }) |
+    @Html.ActionLink("К списку", "Index")
+</p>

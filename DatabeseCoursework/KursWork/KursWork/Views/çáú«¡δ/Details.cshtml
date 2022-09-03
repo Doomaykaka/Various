@@ -1,0 +1,56 @@
+﻿@model KursWork.Models.Загоны
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+    <h4>Загоны</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Колличество_стойл)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Колличество_стойл)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_животных)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_животных)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_ограждения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_ограждения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_участка)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок.Тип_участка)
+        </dd>*@
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Номер_участка }) |
+    @Html.ActionLink("К списку", "Index")
+</p>

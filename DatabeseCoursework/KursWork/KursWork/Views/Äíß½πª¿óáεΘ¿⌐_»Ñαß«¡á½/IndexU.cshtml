@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KursWork.Models.Обслуживающий_персонал>
+
+@{
+    ViewBag.Title = "Обслуживающий персонал";
+}
+
+<h2>Обслуживающий персонал</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Паспорт_работника)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Должность)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Договор)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Обработка.Описание_процесса_обработки)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Паспорт_работника)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ФИО)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Должность)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Договор)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Обработка.Описание_процесса_обработки)
+        </td>*@
+    @*<td>
+        @Html.ActionLink("Изменить", "Edit", new { id = item.Паспорт_работника }) |
+        @Html.ActionLink("Подробнее", "Details", new { id = item.Паспорт_работника }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Паспорт_работника })
+    </td>*@
+</tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

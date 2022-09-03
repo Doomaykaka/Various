@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KursWork.Models.Загоны>
+
+@{
+    ViewBag.Title = "Загоны";
+}
+
+<h2>Загоны</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_участка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Колличество_стойл)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_животных)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_ограждения)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Номер_участка)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Колличество_стойл)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Тип_животных)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Тип_ограждения)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Участок.Тип_участка)
+        </td>*@
+    @*<td>
+        @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_участка }) |
+        @Html.ActionLink("Подробнее", "Details", new { id = item.Номер_участка }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_участка })
+    </td>*@
+</tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

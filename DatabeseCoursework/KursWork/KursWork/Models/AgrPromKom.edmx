@@ -1,0 +1,905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище kursachV2Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserModels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Загоны">
+          <Key>
+            <PropertyRef Name="Номер_участка" />
+          </Key>
+          <Property Name="Номер_участка" Type="int" Nullable="false" />
+          <Property Name="Колличество_стойл" Type="int" Nullable="false" />
+          <Property Name="Тип_животных" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Тип_ограждения" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Заказы">
+          <Key>
+            <PropertyRef Name="Номер" />
+          </Key>
+          <Property Name="Статус_оплаты" Type="int" Nullable="false" />
+          <Property Name="Отзыв" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Тип_заказа" Type="int" Nullable="false" />
+          <Property Name="Номер" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Паспорт_заказчика" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Дата_заказа" Type="datetime" Nullable="false" />
+          <Property Name="Суммарная_стоимость" Type="money" Nullable="false" />
+          <Property Name="Колличество" Type="int" Nullable="false" />
+          <Property Name="ФИО_заказчика" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Замеры">
+          <Key>
+            <PropertyRef Name="Номер_замера" />
+          </Key>
+          <Property Name="Средняя_температура_на_участке" Type="int" Nullable="false" />
+          <Property Name="Давление" Type="int" Nullable="false" />
+          <Property Name="Влажность_участка" Type="int" Nullable="false" />
+          <Property Name="Освещенность_участка" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Пригодность_параметров" Type="int" Nullable="false" />
+          <Property Name="Дата_проведения" Type="datetime" Nullable="false" />
+          <Property Name="Номер_замера" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Номер_участка" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Инвентарь">
+          <Key>
+            <PropertyRef Name="Номер_инвентаря" />
+          </Key>
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Номер_инвентаря" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Состояние" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Назначение" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Число_владельцев" Type="int" Nullable="false" />
+          <Property Name="Стоимость" Type="int" Nullable="false" />
+          <Property Name="Принцип_работы" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Номер_комплектного_инвентаря" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Обработка">
+          <Key>
+            <PropertyRef Name="ID_процесса_обработки" />
+          </Key>
+          <Property Name="ID_процесса_обработки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Время_обработки" Type="datetime" Nullable="false" />
+          <Property Name="Статус_выполнения" Type="int" Nullable="false" />
+          <Property Name="Номер_участка" Type="int" Nullable="false" />
+          <Property Name="Описание_процесса_обработки" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Обслуживающий_персонал">
+          <Key>
+            <PropertyRef Name="Паспорт_работника" />
+          </Key>
+          <Property Name="ФИО" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Должность" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Договор" Type="int" Nullable="false" />
+          <Property Name="Паспорт_работника" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_процесса_обработки" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "kursachV2.dbo.Персонал_инвентарь" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Персонал_инвентарь">
+          <Key>
+            <PropertyRef Name="Паспорт_работника" />
+            <PropertyRef Name="Номер_инвентаря" />
+          </Key>
+          <Property Name="Паспорт_работника" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Номер_инвентаря" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Поля_и_теплицы">
+          <Key>
+            <PropertyRef Name="Номер_участка" />
+          </Key>
+          <Property Name="Номер_участка" Type="int" Nullable="false" />
+          <Property Name="Тип_почвы" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Вид_растений" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Наличие_водоканалов" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Продукция">
+          <Key>
+            <PropertyRef Name="Название_продукта" />
+          </Key>
+          <Property Name="Номер" Type="int" Nullable="false" />
+          <Property Name="Объем_продукции" Type="int" Nullable="false" />
+          <Property Name="Дата_сбора" Type="datetime" Nullable="false" />
+          <Property Name="Номер_участка" Type="int" Nullable="false" />
+          <Property Name="Название_продукта" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Срок_годности" Type="datetime" Nullable="false" />
+          <Property Name="Дата_производства" Type="datetime" Nullable="false" />
+          <Property Name="Тип(животноводческая/растительная)" Type="bit" Nullable="false" />
+          <Property Name="Сорт_продукции" Type="int" Nullable="false" />
+          <Property Name="Стоимость" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Участок">
+          <Key>
+            <PropertyRef Name="Номер_участка" />
+          </Key>
+          <Property Name="Номер_участка" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Площадь" Type="int" Nullable="false" />
+          <Property Name="Эффективность" Type="int" Nullable="false" />
+          <Property Name="Тип_участка" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Загоны_Участок">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Загоны" Type="Self.Загоны" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Загоны">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Инвентарь_Инвентарь">
+          <End Role="Инвентарь" Type="Self.Инвентарь" Multiplicity="1" />
+          <End Role="Инвентарь1" Type="Self.Инвентарь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Инвентарь">
+              <PropertyRef Name="Номер_инвентаря" />
+            </Principal>
+            <Dependent Role="Инвентарь1">
+              <PropertyRef Name="Номер_комплектного_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Персонал_инвентарь_Инвентарь">
+          <End Role="Инвентарь" Type="Self.Инвентарь" Multiplicity="1" />
+          <End Role="Персонал_инвентарь" Type="Self.Персонал_инвентарь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Инвентарь">
+              <PropertyRef Name="Номер_инвентаря" />
+            </Principal>
+            <Dependent Role="Персонал_инвентарь">
+              <PropertyRef Name="Номер_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Персонал_инвентарь_Обслуживающий_персонал">
+          <End Role="Обслуживающий_персонал" Type="Self.Обслуживающий_персонал" Multiplicity="1" />
+          <End Role="Персонал_инвентарь" Type="Self.Персонал_инвентарь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Обслуживающий_персонал">
+              <PropertyRef Name="Паспорт_работника" />
+            </Principal>
+            <Dependent Role="Персонал_инвентарь">
+              <PropertyRef Name="Паспорт_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поля_и_теплицы_Участок">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Поля_и_теплицы" Type="Self.Поля_и_теплицы" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Поля_и_теплицы">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Замеры_Участок_FK_Rule">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Замеры" Type="Self.Замеры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Замеры">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Обработка_Участок_FK_Rule">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Обработка" Type="Self.Обработка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Обработка">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Обслуживающий_персонал_Обработка_FK_Rule">
+          <End Role="Обработка" Type="Self.Обработка" Multiplicity="1" />
+          <End Role="Обслуживающий_персонал" Type="Self.Обслуживающий_персонал" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Обработка">
+              <PropertyRef Name="ID_процесса_обработки" />
+            </Principal>
+            <Dependent Role="Обслуживающий_персонал">
+              <PropertyRef Name="ID_процесса_обработки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Продукция_Заказы_FK_Rule">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="1" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="Номер" />
+            </Principal>
+            <Dependent Role="Продукция">
+              <PropertyRef Name="Номер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Продукция_Участок_FK_Rule">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Продукция">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="PRIGOD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="Tmax" Type="int" Mode="In" />
+          <Parameter Name="Tmin" Type="int" Mode="In" />
+          <Parameter Name="Pmax" Type="int" Mode="In" />
+          <Parameter Name="Pmin" Type="int" Mode="In" />
+          <Parameter Name="Wmax" Type="int" Mode="In" />
+          <Parameter Name="Wmin" Type="int" Mode="In" />
+          <Parameter Name="Lie" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PROD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stat" Type="bigint" Mode="In" />
+          <Parameter Name="good" Type="nvarchar" Mode="In" />
+          <Parameter Name="bad" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SALE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usl" Type="int" Mode="In" />
+          <Parameter Name="soob" Type="nvarchar" Mode="In" />
+          <Parameter Name="pok" Type="int" Mode="In" />
+          <Parameter Name="procen" Type="float" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище kursachV2ModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserModels" EntityType="Self.UserModels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Загоны" EntityType="Self.Загоны" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заказы" EntityType="Self.Заказы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Замеры" EntityType="Self.Замеры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Инвентарь" EntityType="Self.Инвентарь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Обработка" EntityType="Self.Обработка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Обслуживающий_персонал" EntityType="Self.Обслуживающий_персонал" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Поля_и_теплицы" EntityType="Self.Поля_и_теплицы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Продукция" EntityType="Self.Продукция" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Участок" EntityType="Self.Участок" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Персонал_инвентарь" EntityType="Self.Персонал_инвентарь" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Персонал_инвентарь].[Паспорт_работника] AS [Паспорт_работника], 
+    [Персонал_инвентарь].[Номер_инвентаря] AS [Номер_инвентаря]
+    FROM [dbo].[Персонал_инвентарь] AS [Персонал_инвентарь]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Загоны_Участок" Association="Self.FK_Загоны_Участок">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Загоны" EntitySet="Загоны" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Инвентарь_Инвентарь" Association="Self.FK_Инвентарь_Инвентарь">
+            <End Role="Инвентарь" EntitySet="Инвентарь" />
+            <End Role="Инвентарь1" EntitySet="Инвентарь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Персонал_инвентарь_Инвентарь" Association="Self.FK_Персонал_инвентарь_Инвентарь">
+            <End Role="Инвентарь" EntitySet="Инвентарь" />
+            <End Role="Персонал_инвентарь" EntitySet="Персонал_инвентарь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Персонал_инвентарь_Обслуживающий_персонал" Association="Self.FK_Персонал_инвентарь_Обслуживающий_персонал">
+            <End Role="Обслуживающий_персонал" EntitySet="Обслуживающий_персонал" />
+            <End Role="Персонал_инвентарь" EntitySet="Персонал_инвентарь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поля_и_теплицы_Участок" Association="Self.FK_Поля_и_теплицы_Участок">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Поля_и_теплицы" EntitySet="Поля_и_теплицы" />
+          </AssociationSet>
+          <AssociationSet Name="Замеры_Участок_FK_Rule" Association="Self.Замеры_Участок_FK_Rule">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Замеры" EntitySet="Замеры" />
+          </AssociationSet>
+          <AssociationSet Name="Обработка_Участок_FK_Rule" Association="Self.Обработка_Участок_FK_Rule">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Обработка" EntitySet="Обработка" />
+          </AssociationSet>
+          <AssociationSet Name="Обслуживающий_персонал_Обработка_FK_Rule" Association="Self.Обслуживающий_персонал_Обработка_FK_Rule">
+            <End Role="Обработка" EntitySet="Обработка" />
+            <End Role="Обслуживающий_персонал" EntitySet="Обслуживающий_персонал" />
+          </AssociationSet>
+          <AssociationSet Name="Продукция_Заказы_FK_Rule" Association="Self.Продукция_Заказы_FK_Rule">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+          <AssociationSet Name="Продукция_Участок_FK_Rule" Association="Self.Продукция_Участок_FK_Rule">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="kursachV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Загоны">
+          <Key>
+            <PropertyRef Name="Номер_участка" />
+          </Key>
+          <Property Name="Номер_участка" Type="Int32" Nullable="false" />
+          <Property Name="Колличество_стойл" Type="Int32" Nullable="false" />
+          <Property Name="Тип_животных" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Тип_ограждения" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Участок" Relationship="Self.FK_Загоны_Участок" FromRole="Загоны" ToRole="Участок" />
+        </EntityType>
+        <EntityType Name="Заказы">
+          <Key>
+            <PropertyRef Name="Номер" />
+          </Key>
+          <Property Name="Статус_оплаты" Type="Int32" Nullable="false" />
+          <Property Name="Отзыв" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Тип_заказа" Type="Int32" Nullable="false" />
+          <Property Name="Номер" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Паспорт_заказчика" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_заказа" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Суммарная_стоимость" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Колличество" Type="Int32" Nullable="false" />
+          <Property Name="ФИО_заказчика" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Продукция" Relationship="Self.Продукция_Заказы_FK_Rule" FromRole="Заказы" ToRole="Продукция" />
+        </EntityType>
+        <EntityType Name="Замеры">
+          <Key>
+            <PropertyRef Name="Номер_замера" />
+          </Key>
+          <Property Name="Средняя_температура_на_участке" Type="Int32" Nullable="false" />
+          <Property Name="Давление" Type="Int32" Nullable="false" />
+          <Property Name="Влажность_участка" Type="Int32" Nullable="false" />
+          <Property Name="Освещенность_участка" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Пригодность_параметров" Type="Int32" Nullable="false" />
+          <Property Name="Дата_проведения" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Номер_замера" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Номер_участка" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Участок" Relationship="Self.Замеры_Участок_FK_Rule" FromRole="Замеры" ToRole="Участок" />
+        </EntityType>
+        <EntityType Name="Инвентарь">
+          <Key>
+            <PropertyRef Name="Номер_инвентаря" />
+          </Key>
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Номер_инвентаря" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Состояние" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Назначение" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Число_владельцев" Type="Int32" Nullable="false" />
+          <Property Name="Стоимость" Type="Int32" Nullable="false" />
+          <Property Name="Принцип_работы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Номер_комплектного_инвентаря" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Инвентарь1" Relationship="Self.FK_Инвентарь_Инвентарь" FromRole="Инвентарь" ToRole="Инвентарь1" />
+          <NavigationProperty Name="Инвентарь2" Relationship="Self.FK_Инвентарь_Инвентарь" FromRole="Инвентарь1" ToRole="Инвентарь" />
+          <NavigationProperty Name="Обслуживающий_персонал" Relationship="Self.Персонал_инвентарь" FromRole="Инвентарь" ToRole="Обслуживающий_персонал" />
+        </EntityType>
+        <EntityType Name="Обработка">
+          <Key>
+            <PropertyRef Name="ID_процесса_обработки" />
+          </Key>
+          <Property Name="ID_процесса_обработки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Время_обработки" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Статус_выполнения" Type="Int32" Nullable="false" />
+          <Property Name="Номер_участка" Type="Int32" Nullable="false" />
+          <Property Name="Описание_процесса_обработки" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Участок" Relationship="Self.Обработка_Участок_FK_Rule" FromRole="Обработка" ToRole="Участок" />
+          <NavigationProperty Name="Обслуживающий_персонал" Relationship="Self.Обслуживающий_персонал_Обработка_FK_Rule" FromRole="Обработка" ToRole="Обслуживающий_персонал" />
+        </EntityType>
+        <EntityType Name="Обслуживающий_персонал">
+          <Key>
+            <PropertyRef Name="Паспорт_работника" />
+          </Key>
+          <Property Name="ФИО" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Договор" Type="Int32" Nullable="false" />
+          <Property Name="Паспорт_работника" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_процесса_обработки" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Обработка" Relationship="Self.Обслуживающий_персонал_Обработка_FK_Rule" FromRole="Обслуживающий_персонал" ToRole="Обработка" />
+          <NavigationProperty Name="Инвентарь" Relationship="Self.Персонал_инвентарь" FromRole="Обслуживающий_персонал" ToRole="Инвентарь" />
+        </EntityType>
+        <EntityType Name="Поля_и_теплицы">
+          <Key>
+            <PropertyRef Name="Номер_участка" />
+          </Key>
+          <Property Name="Номер_участка" Type="Int32" Nullable="false" />
+          <Property Name="Тип_почвы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Вид_растений" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Наличие_водоканалов" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Участок" Relationship="Self.FK_Поля_и_теплицы_Участок" FromRole="Поля_и_теплицы" ToRole="Участок" />
+        </EntityType>
+        <EntityType Name="Продукция">
+          <Key>
+            <PropertyRef Name="Название_продукта" />
+          </Key>
+          <Property Name="Номер" Type="Int32" Nullable="false" />
+          <Property Name="Объем_продукции" Type="Int32" Nullable="false" />
+          <Property Name="Дата_сбора" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Номер_участка" Type="Int32" Nullable="false" />
+          <Property Name="Название_продукта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Срок_годности" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Дата_производства" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Тип_животноводческая_растительная_" Type="Boolean" Nullable="false" />
+          <Property Name="Сорт_продукции" Type="Int32" Nullable="false" />
+          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Заказы" Relationship="Self.Продукция_Заказы_FK_Rule" FromRole="Продукция" ToRole="Заказы" />
+          <NavigationProperty Name="Участок" Relationship="Self.Продукция_Участок_FK_Rule" FromRole="Продукция" ToRole="Участок" />
+        </EntityType>
+        <EntityType Name="Участок">
+          <Key>
+            <PropertyRef Name="Номер_участка" />
+          </Key>
+          <Property Name="Номер_участка" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Площадь" Type="Int32" Nullable="false" />
+          <Property Name="Эффективность" Type="Int32" Nullable="false" />
+          <Property Name="Тип_участка" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Загоны" Relationship="Self.FK_Загоны_Участок" FromRole="Участок" ToRole="Загоны" />
+          <NavigationProperty Name="Замеры" Relationship="Self.Замеры_Участок_FK_Rule" FromRole="Участок" ToRole="Замеры" />
+          <NavigationProperty Name="Обработка" Relationship="Self.Обработка_Участок_FK_Rule" FromRole="Участок" ToRole="Обработка" />
+          <NavigationProperty Name="Поля_и_теплицы" Relationship="Self.FK_Поля_и_теплицы_Участок" FromRole="Участок" ToRole="Поля_и_теплицы" />
+          <NavigationProperty Name="Продукция" Relationship="Self.Продукция_Участок_FK_Rule" FromRole="Участок" ToRole="Продукция" />
+        </EntityType>
+        <Association Name="FK_Загоны_Участок">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Загоны" Type="Self.Загоны" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Загоны">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Продукция_Заказы_FK_Rule">
+          <End Role="Заказы" Type="Self.Заказы" Multiplicity="1" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказы">
+              <PropertyRef Name="Номер" />
+            </Principal>
+            <Dependent Role="Продукция">
+              <PropertyRef Name="Номер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Замеры_Участок_FK_Rule">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Замеры" Type="Self.Замеры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Замеры">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Инвентарь_Инвентарь">
+          <End Role="Инвентарь" Type="Self.Инвентарь" Multiplicity="1" />
+          <End Role="Инвентарь1" Type="Self.Инвентарь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Инвентарь">
+              <PropertyRef Name="Номер_инвентаря" />
+            </Principal>
+            <Dependent Role="Инвентарь1">
+              <PropertyRef Name="Номер_комплектного_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Обработка_Участок_FK_Rule">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Обработка" Type="Self.Обработка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Обработка">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Обслуживающий_персонал_Обработка_FK_Rule">
+          <End Role="Обработка" Type="Self.Обработка" Multiplicity="1" />
+          <End Role="Обслуживающий_персонал" Type="Self.Обслуживающий_персонал" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Обработка">
+              <PropertyRef Name="ID_процесса_обработки" />
+            </Principal>
+            <Dependent Role="Обслуживающий_персонал">
+              <PropertyRef Name="ID_процесса_обработки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поля_и_теплицы_Участок">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Поля_и_теплицы" Type="Self.Поля_и_теплицы" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Поля_и_теплицы">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Продукция_Участок_FK_Rule">
+          <End Role="Участок" Type="Self.Участок" Multiplicity="1" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Участок">
+              <PropertyRef Name="Номер_участка" />
+            </Principal>
+            <Dependent Role="Продукция">
+              <PropertyRef Name="Номер_участка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Персонал_инвентарь">
+          <End Role="Инвентарь" Type="Self.Инвентарь" Multiplicity="*" />
+          <End Role="Обслуживающий_персонал" Type="Self.Обслуживающий_персонал" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="kursachV2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Загоны" EntityType="Self.Загоны" />
+          <EntitySet Name="Заказы" EntityType="Self.Заказы" />
+          <EntitySet Name="Замеры" EntityType="Self.Замеры" />
+          <EntitySet Name="Инвентарь" EntityType="Self.Инвентарь" />
+          <EntitySet Name="Обработка" EntityType="Self.Обработка" />
+          <EntitySet Name="Обслуживающий_персонал" EntityType="Self.Обслуживающий_персонал" />
+          <EntitySet Name="Поля_и_теплицы" EntityType="Self.Поля_и_теплицы" />
+          <EntitySet Name="Продукция" EntityType="Self.Продукция" />
+          <EntitySet Name="Участок" EntityType="Self.Участок" />
+          <AssociationSet Name="FK_Загоны_Участок" Association="Self.FK_Загоны_Участок">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Загоны" EntitySet="Загоны" />
+          </AssociationSet>
+          <AssociationSet Name="Продукция_Заказы_FK_Rule" Association="Self.Продукция_Заказы_FK_Rule">
+            <End Role="Заказы" EntitySet="Заказы" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+          <AssociationSet Name="Замеры_Участок_FK_Rule" Association="Self.Замеры_Участок_FK_Rule">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Замеры" EntitySet="Замеры" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Инвентарь_Инвентарь" Association="Self.FK_Инвентарь_Инвентарь">
+            <End Role="Инвентарь" EntitySet="Инвентарь" />
+            <End Role="Инвентарь1" EntitySet="Инвентарь" />
+          </AssociationSet>
+          <AssociationSet Name="Обработка_Участок_FK_Rule" Association="Self.Обработка_Участок_FK_Rule">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Обработка" EntitySet="Обработка" />
+          </AssociationSet>
+          <AssociationSet Name="Обслуживающий_персонал_Обработка_FK_Rule" Association="Self.Обслуживающий_персонал_Обработка_FK_Rule">
+            <End Role="Обработка" EntitySet="Обработка" />
+            <End Role="Обслуживающий_персонал" EntitySet="Обслуживающий_персонал" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поля_и_теплицы_Участок" Association="Self.FK_Поля_и_теплицы_Участок">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Поля_и_теплицы" EntitySet="Поля_и_теплицы" />
+          </AssociationSet>
+          <AssociationSet Name="Продукция_Участок_FK_Rule" Association="Self.Продукция_Участок_FK_Rule">
+            <End Role="Участок" EntitySet="Участок" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+          <AssociationSet Name="Персонал_инвентарь" Association="Self.Персонал_инвентарь">
+            <End Role="Инвентарь" EntitySet="Инвентарь" />
+            <End Role="Обслуживающий_персонал" EntitySet="Обслуживающий_персонал" />
+          </AssociationSet>
+          <FunctionImport Name="PROD">
+            <Parameter Name="stat" Mode="In" Type="Int64" />
+            <Parameter Name="good" Mode="In" Type="String" />
+            <Parameter Name="bad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SALE">
+            <Parameter Name="usl" Mode="In" Type="Int32" />
+            <Parameter Name="soob" Mode="In" Type="String" />
+            <Parameter Name="pok" Mode="In" Type="Int32" />
+            <Parameter Name="procen" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(kursachV2Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(kursachV2Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="UserModels" EntityType="kursachV2Model.UserModels" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="UserModels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище kursachV2ModelContainer" CdmEntityContainer="kursachV2Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="kursachV2Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Загоны">
+            <EntityTypeMapping TypeName="kursachV2Model.Загоны">
+              <MappingFragment StoreEntitySet="Загоны">
+                <ScalarProperty Name="Номер_участка" ColumnName="Номер_участка" />
+                <ScalarProperty Name="Колличество_стойл" ColumnName="Колличество_стойл" />
+                <ScalarProperty Name="Тип_животных" ColumnName="Тип_животных" />
+                <ScalarProperty Name="Тип_ограждения" ColumnName="Тип_ограждения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заказы">
+            <EntityTypeMapping TypeName="kursachV2Model.Заказы">
+              <MappingFragment StoreEntitySet="Заказы">
+                <ScalarProperty Name="Статус_оплаты" ColumnName="Статус_оплаты" />
+                <ScalarProperty Name="Отзыв" ColumnName="Отзыв" />
+                <ScalarProperty Name="Тип_заказа" ColumnName="Тип_заказа" />
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Паспорт_заказчика" ColumnName="Паспорт_заказчика" />
+                <ScalarProperty Name="Дата_заказа" ColumnName="Дата_заказа" />
+                <ScalarProperty Name="Суммарная_стоимость" ColumnName="Суммарная_стоимость" />
+                <ScalarProperty Name="Колличество" ColumnName="Колличество" />
+                <ScalarProperty Name="ФИО_заказчика" ColumnName="ФИО_заказчика" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Замеры">
+            <EntityTypeMapping TypeName="kursachV2Model.Замеры">
+              <MappingFragment StoreEntitySet="Замеры">
+                <ScalarProperty Name="Средняя_температура_на_участке" ColumnName="Средняя_температура_на_участке" />
+                <ScalarProperty Name="Давление" ColumnName="Давление" />
+                <ScalarProperty Name="Влажность_участка" ColumnName="Влажность_участка" />
+                <ScalarProperty Name="Освещенность_участка" ColumnName="Освещенность_участка" />
+                <ScalarProperty Name="Пригодность_параметров" ColumnName="Пригодность_параметров" />
+                <ScalarProperty Name="Дата_проведения" ColumnName="Дата_проведения" />
+                <ScalarProperty Name="Номер_замера" ColumnName="Номер_замера" />
+                <ScalarProperty Name="Номер_участка" ColumnName="Номер_участка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Инвентарь">
+            <EntityTypeMapping TypeName="kursachV2Model.Инвентарь">
+              <MappingFragment StoreEntitySet="Инвентарь">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Номер_инвентаря" ColumnName="Номер_инвентаря" />
+                <ScalarProperty Name="Состояние" ColumnName="Состояние" />
+                <ScalarProperty Name="Назначение" ColumnName="Назначение" />
+                <ScalarProperty Name="Число_владельцев" ColumnName="Число_владельцев" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Принцип_работы" ColumnName="Принцип_работы" />
+                <ScalarProperty Name="Номер_комплектного_инвентаря" ColumnName="Номер_комплектного_инвентаря" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Обработка">
+            <EntityTypeMapping TypeName="kursachV2Model.Обработка">
+              <MappingFragment StoreEntitySet="Обработка">
+                <ScalarProperty Name="ID_процесса_обработки" ColumnName="ID_процесса_обработки" />
+                <ScalarProperty Name="Время_обработки" ColumnName="Время_обработки" />
+                <ScalarProperty Name="Статус_выполнения" ColumnName="Статус_выполнения" />
+                <ScalarProperty Name="Номер_участка" ColumnName="Номер_участка" />
+                <ScalarProperty Name="Описание_процесса_обработки" ColumnName="Описание_процесса_обработки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Обслуживающий_персонал">
+            <EntityTypeMapping TypeName="kursachV2Model.Обслуживающий_персонал">
+              <MappingFragment StoreEntitySet="Обслуживающий_персонал">
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Договор" ColumnName="Договор" />
+                <ScalarProperty Name="Паспорт_работника" ColumnName="Паспорт_работника" />
+                <ScalarProperty Name="ID_процесса_обработки" ColumnName="ID_процесса_обработки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Поля_и_теплицы">
+            <EntityTypeMapping TypeName="kursachV2Model.Поля_и_теплицы">
+              <MappingFragment StoreEntitySet="Поля_и_теплицы">
+                <ScalarProperty Name="Номер_участка" ColumnName="Номер_участка" />
+                <ScalarProperty Name="Тип_почвы" ColumnName="Тип_почвы" />
+                <ScalarProperty Name="Вид_растений" ColumnName="Вид_растений" />
+                <ScalarProperty Name="Наличие_водоканалов" ColumnName="Наличие_водоканалов" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Продукция">
+            <EntityTypeMapping TypeName="kursachV2Model.Продукция">
+              <MappingFragment StoreEntitySet="Продукция">
+                <ScalarProperty Name="Номер" ColumnName="Номер" />
+                <ScalarProperty Name="Объем_продукции" ColumnName="Объем_продукции" />
+                <ScalarProperty Name="Дата_сбора" ColumnName="Дата_сбора" />
+                <ScalarProperty Name="Номер_участка" ColumnName="Номер_участка" />
+                <ScalarProperty Name="Название_продукта" ColumnName="Название_продукта" />
+                <ScalarProperty Name="Срок_годности" ColumnName="Срок_годности" />
+                <ScalarProperty Name="Дата_производства" ColumnName="Дата_производства" />
+                <ScalarProperty Name="Тип_животноводческая_растительная_" ColumnName="Тип(животноводческая/растительная)" />
+                <ScalarProperty Name="Сорт_продукции" ColumnName="Сорт_продукции" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Участок">
+            <EntityTypeMapping TypeName="kursachV2Model.Участок">
+              <MappingFragment StoreEntitySet="Участок">
+                <ScalarProperty Name="Номер_участка" ColumnName="Номер_участка" />
+                <ScalarProperty Name="Площадь" ColumnName="Площадь" />
+                <ScalarProperty Name="Эффективность" ColumnName="Эффективность" />
+                <ScalarProperty Name="Тип_участка" ColumnName="Тип_участка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Персонал_инвентарь" TypeName="kursachV2Model.Персонал_инвентарь" StoreEntitySet="Персонал_инвентарь">
+            <EndProperty Name="Инвентарь">
+              <ScalarProperty Name="Номер_инвентаря" ColumnName="Номер_инвентаря" />
+            </EndProperty>
+            <EndProperty Name="Обслуживающий_персонал">
+              <ScalarProperty Name="Паспорт_работника" ColumnName="Паспорт_работника" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="PROD" FunctionName="Хранилище kursachV2Model.PROD" />
+          <FunctionImportMapping FunctionImportName="SALE" FunctionName="Хранилище kursachV2Model.SALE" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище kursachV2Model.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище kursachV2Model.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище kursachV2Model.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище kursachV2Model.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="kursachV2Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище kursachV2Model.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="kursachV2Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище kursachV2Model.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище kursachV2Model.sp_upgraddiagrams" />
+          <EntitySetMapping Name="UserModels">
+            <EntityTypeMapping TypeName="kursachV2Model.UserModels">
+              <MappingFragment StoreEntitySet="UserModels">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

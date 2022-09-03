@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KursWork.Models.Обработка>
+
+@{
+    ViewBag.Title = "Обработка";
+}
+
+<h2>Обработка</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_процесса_обработки)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Время_обработки)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Статус_выполнения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Описание_процесса_обработки)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID_процесса_обработки)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Время_обработки)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Статус_выполнения)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Описание_процесса_обработки)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Участок.Тип_участка)
+        </td>*@
+    @*<td>
+        @Html.ActionLink("Изменить", "Edit", new { id = item.ID_процесса_обработки }) |
+        @Html.ActionLink("Подробнее", "Details", new { id = item.ID_процесса_обработки }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.ID_процесса_обработки })
+    </td>*@
+</tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

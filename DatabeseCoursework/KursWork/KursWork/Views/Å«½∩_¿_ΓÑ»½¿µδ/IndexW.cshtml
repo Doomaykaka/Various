@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KursWork.Models.Поля_и_теплицы>
+
+@{
+    ViewBag.Title = "Поля и теплицы";
+}
+
+<h2>Поля и теплицы</h2>
+
+<p>
+    @Html.ActionLink("Создать", "CreateW")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_участка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_почвы)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Вид_растений)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Наличие_водоканалов)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Номер_участка)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Тип_почвы)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Вид_растений)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Наличие_водоканалов)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Участок.Тип_участка)
+        </td>*@
+    @*<td>
+        @Html.ActionLink("Изменить", "Edit", new { id = item.Номер_участка }) |
+        @Html.ActionLink("Подробнее", "Details", new { id = item.Номер_участка }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.Номер_участка })
+    </td>*@
+</tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexW")
+</p>

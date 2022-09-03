@@ -1,0 +1,122 @@
+﻿@model IEnumerable<KursWork.Models.Продукция>
+
+@{
+    ViewBag.Title = "Продукция";
+}
+
+<h2>Продукция</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Фильтрация по стоимости продукта : от @Html.TextBox("PrPriceS") до @Html.TextBox("PrPriceF")
+    </p>
+    <p>
+        Поиск по названию продукта : @Html.TextBox("PrName")
+    </p>
+    <p>
+        <input type="submit" value="Применить" />
+    </p>
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        Максимальное количество не свежей продукции : @Html.TextBox("Stat")
+    </p>
+    <p>
+        Сообщение в случае удачи : @Html.TextBox("Good")
+    </p>
+    <p>
+        Сообщение в случае провала : @Html.TextBox("Bad")
+    </p>
+    <p>
+        <input type="submit" value="Применить" />
+    </p>
+}
+@ViewBag.ProdFieldErr*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Название_продукта)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Объем_продукции)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_сбора)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Срок_годности)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_производства)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_животноводческая_растительная_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Сорт_продукции)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Стоимость)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Заказы.Отзыв)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Название_продукта)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Объем_продукции)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_сбора)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Срок_годности)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_производства)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Тип_животноводческая_растительная_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Сорт_продукции)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Стоимость)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Заказы.Отзыв)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Участок.Тип_участка)
+                </td>*@
+            @*<td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Название_продукта }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.Название_продукта }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Название_продукта })
+            </td>*@
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

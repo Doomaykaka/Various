@@ -1,0 +1,57 @@
+﻿@model KursWork.Models.Обработка
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+    <h4>Обработка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Время_обработки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Время_обработки)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Статус_выполнения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_выполнения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Описание_процесса_обработки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Описание_процесса_обработки)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_процесса_обработки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_процесса_обработки)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок.Тип_участка)
+        </dd>*@
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID_процесса_обработки }) |
+    @Html.ActionLink("К списку", "Index")
+</p>

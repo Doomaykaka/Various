@@ -1,0 +1,58 @@
+﻿@model KursWork.Models.Обслуживающий_персонал
+
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+    <h4>Обслуживающий_персонал</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ФИО)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Должность)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Должность)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Договор)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Договор)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Паспорт_работника)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Паспорт_работника)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Обработка.Описание_процесса_обработки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Обработка.Описание_процесса_обработки)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.Паспорт_работника }) |
+    @Html.ActionLink("К списку", "Index")
+</p>

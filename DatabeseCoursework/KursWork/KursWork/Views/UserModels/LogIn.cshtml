@@ -1,0 +1,18 @@
+﻿@model KursWork.Models.UserModels
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Вход</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        Введите логин: <input type="text" name="LogIn" /> <br /><br />
+        Введите пароль: <input type="text" name="PassW" />
+        <input type="submit" value="Вход" />
+    </div>
+}
+@ViewBag.Error
+

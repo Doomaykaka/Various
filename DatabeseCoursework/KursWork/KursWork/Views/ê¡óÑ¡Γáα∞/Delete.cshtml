@@ -1,0 +1,80 @@
+﻿@model KursWork.Models.Инвентарь
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы хотите удалить эту запись?</h3>
+<div>
+    <h4>Инвентарь</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Состояние)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Состояние)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Назначение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Назначение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Число_владельцев)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Число_владельцев)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Стоимость)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Стоимость)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Принцип_работы)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Принцип_работы)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Инвентарь2.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Инвентарь2.Наименование)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку", "Index")
+        </div>
+    }
+</div>

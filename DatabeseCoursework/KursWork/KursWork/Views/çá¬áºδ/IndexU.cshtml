@@ -1,0 +1,105 @@
+﻿@model IEnumerable<KursWork.Models.Заказы>
+
+@{
+    ViewBag.Title = "Заказы";
+}
+
+<h2>Заказы</h2>
+
+@*<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Общая стоимость от которой зависит получение скидки : @Html.TextBox("Usl")
+    </p>
+    <p>
+        Сообщение в случае получения скидки : @Html.TextBox("Soob")
+    </p>
+    <p>
+        Число покупателей для начала распродаж : @Html.TextBox("Pok")
+    </p>
+    <p>
+        Процент скидки : @Html.TextBox("Procen")
+    </p>
+    <p>
+        <input type="submit" value="Применить" />
+    </p>
+}
+@ViewBag.activityCount*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Статус_оплаты)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Отзыв)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_заказа)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Паспорт_заказчика)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_заказа)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Суммарная_стоимость)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Колличество)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ФИО_заказчика)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Статус_оплаты)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Отзыв)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Тип_заказа)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Паспорт_заказчика)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_заказа)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Суммарная_стоимость)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Колличество)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ФИО_заказчика)
+            </td>
+            @*<td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Номер }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.Номер }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Номер })
+            </td>*@
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Меню", "../Menu/IndexU")
+</p>

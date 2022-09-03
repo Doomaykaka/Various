@@ -1,0 +1,56 @@
+﻿@model KursWork.Models.Загоны
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы хотите удалить эту запись?</h3>
+<div>
+    <h4>Загоны</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Колличество_стойл)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Колличество_стойл)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_животных)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_животных)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_ограждения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_ограждения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Участок.Тип_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Участок.Тип_участка)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку", "Index")
+        </div>
+    }
+</div>
