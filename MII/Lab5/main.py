@@ -7,8 +7,9 @@ from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
 #Читаем данные из csv
-teach_df = pandas.read_csv('Cyber_salaries.csv')
-test_df = teach_df
+df = pandas.read_csv('Cyber_salaries.csv')
+teach_df = df.iloc [:675]
+test_df = df.iloc [675:]
 
 #Подготавливаем данные
 def preparation(df):
